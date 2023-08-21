@@ -1,0 +1,138 @@
+use socialMedia;
+
+db.posts.deleteMany({});
+db.users.deleteMany({});
+
+
+//2.A
+db.users.insertOne({
+  "name": "Tahlil",
+  "email": "tahlilmahfuz@iut-dhaka.edu",
+  "password": "bolbo na"
+});
+
+//2.B
+db.users.insertMany([
+   {
+   "name": "Mahfuz",
+   "email": "mahfuz@gmail.com",
+   "password": "etao bolbo na",
+   "phone_no": "146193612415",
+   "date_of_birth": ISODate("1995-03-01"),
+   "address": "Khulna",
+   "profile_creation_date": ISODate("2022-01-01"),
+   "hobbies": ["reading", "coding", "sleeping"]
+   },
+  {
+    "name": "Faruk",
+    "email": "faruk@gmail.com",
+    "password": "bolbo na akdomi",
+    "phone_no": "1234567890",
+    "date_of_birth": ISODate("1990-05-15"),
+    "address": "Dhaka",
+    "profile_creation_date": ISODate("2022-02-01"),
+    "hobbies": ["reading", "moaning"]
+  }]
+);
+
+
+//2.C
+db.users.insertOne({
+  "name": "Mamun",
+  "email": "mamun@gmail.com",
+  "password": "nope bolbo na",
+  "phone_no": "198469136591",
+  "date_of_birth": ISODate("1992-12-25"),
+  "address": "Mohammadpur",
+  "profile_creation_date": ISODate("2022-03-01"),
+  "working_status": "Software Engineer"
+});
+
+
+//2.D
+db.users.updateOne({ "email": "mamun@gmail.com" }, { $addToSet: { "followers": "Nibir" } });
+db.users.updateOne({ "email": "faruk@gmail.com" }, { $addToSet: { "followers": "Kawser" } });
+db.users.updateOne({ "email": "mahfuz@gmail.com" }, { $addToSet: { "followers": "Tanzim" } });
+
+db.users.updateMany(
+  { "email": { $in: ["mamun@gmail.com", "faruk@gmail.com", "mahfuz@gmail.com"] } },
+  { $addToSet: { "followers": { $each: ["Hero Alom"] } } }
+);
+
+db.users.updateMany(
+  { "email": { $in: ["mamun@gmail.com", "faruk@gmail.com"] } },
+  { $addToSet: { "followers": { $each: ["Shoumik", "Kawsar","tanzim"] }, "following": { $each: ["tahlil", "mahfuz","faruk"] } } }
+);
+
+db.users.updateMany(
+  { "email": { $in: ["faruk@gmail.com"] } },
+  { $addToSet: { "followers": { $each: ["nibir", "Kawsar","tanzim"] } } }
+);
+
+db.users.updateMany(
+  { "email": { $in: ["mamun@gmail.com", "faruk@gmail.com"] } },
+  { $addToSet: {"following": { $each: ["tahlil", "mahfuz","faruk"] } } }
+);
+
+db.users.updateMany(
+  { "email": { $in: ["mamun@gmail.com"] } },
+  { $addToSet: {"following": { $each: ["tahlil", "mahfuz","Shakkhor"] } } }
+);
+
+
+
+//2.E
+db.posts.insertMany([
+  {
+    "content": "Broom Broom",
+    "creation_time": ISODate("2022-03-05T12:00:00Z"),
+    "user_id": "tingting@gmail.com",
+    "likes": ["pingping@gmail.com","tamim@gmail.com"],
+  },
+  {
+    "content": "Troom Troom",
+    "creation_time": ISODate("2022-03-05T12:00:00Z"),
+    "user_id": "talha@gmail.com",
+    "likes": ["muaz@gmail.com","mukit@gmail.com"],
+  },
+  {
+    "content": "kroom kroom",
+    "creation_time": new Date(),
+    "user_id": "talha123@gmail.com",
+    "likes": ["muaz123@gmail.com","mukit123@gmail.com"],
+  },
+ ]);
+
+//2.F
+db.posts.updateMany(
+    {"user_id":{ $in: ["tingting@gmail.com", "talha@gmail.com", "talha123@gmail.com"] }},
+    {$addToSet: { "comments": { $each: ["Xoxx", "Nice pic","Mama treat dao"] } }}
+);
+
+db.posts.updateMany(
+    {"user_id":"tingting@gmail.com"},
+    {$set : {"comments":"tumi valo na","comments":"tumi kharap"}}
+);
+
+
+
+//3.A
+db.posts.find().sort({creation_time:-1});
+
+//3.B
+db.posts.find({"creation_time":{$gt:new Date(Date.now() - 24*60*60*1000)}});
+
+//3.C
+db.users.find({$where:"this.followers && this.followers.length >3"});
+//3.D
+db.users.find({ $where:"this.following && this.following.length >3"});
+
+
+
+//db.users.find({}, { _id: 0, email: 1 })
+db.users.find();
+db.posts.find();
+
+
+
+

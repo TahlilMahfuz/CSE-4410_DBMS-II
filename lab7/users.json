@@ -1,0 +1,46 @@
+[
+  {
+    "_id": {"$oid": "64135fa44ef1af4381cfccc8"},
+    "email": "tahlilmahfuz@iut-dhaka.edu",
+    "name": "Tahlil",
+    "password": "bolbo na"
+  },
+  {
+    "_id": {"$oid": "64135fa44ef1af4381cfccc9"},
+    "email": "mahfuz@gmail.com",
+    "name": "Mahfuz",
+    "password": "etao bolbo na",
+    "address": "Khulna",
+    "date_of_birth": {"$date": "1995-03-01T00:00:00.000Z"},
+    "followers": ["Tanzim", "Hero Alom"],
+    "hobbies": ["reading", "coding", "sleeping"],
+    "phone_no": "146193612415",
+    "profile_creation_date": {"$date": "2022-01-01T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "64135fa44ef1af4381cfccca"},
+    "email": "faruk@gmail.com",
+    "name": "Faruk",
+    "password": "bolbo na akdomi",
+    "address": "Dhaka",
+    "date_of_birth": {"$date": "1990-05-15T00:00:00.000Z"},
+    "followers": ["Kawser", "Hero Alom", "Shoumik", "Kawsar", "tanzim", "nibir"],
+    "hobbies": ["reading", "moaning"],
+    "phone_no": "1234567890",
+    "profile_creation_date": {"$date": "2022-02-01T00:00:00.000Z"},
+    "following": ["tahlil", "mahfuz", "faruk"]
+  },
+  {
+    "_id": {"$oid": "64135fa54ef1af4381cfcccb"},
+    "email": "mamun@gmail.com",
+    "name": "Mamun",
+    "password": "nope bolbo na",
+    "address": "Mohammadpur",
+    "date_of_birth": {"$date": "1992-12-25T00:00:00.000Z"},
+    "followers": "[Nibir, Hero Alom, Shoumik, Kawsar, tanzim]",
+    "phone_no": "198469136591",
+    "profile_creation_date": {"$date": "2022-03-01T00:00:00.000Z"},
+    "following": "[tahlil, mahfuz, faruk, Shakkhor]",
+    "working_status": "Software Engineer"
+  }
+]
